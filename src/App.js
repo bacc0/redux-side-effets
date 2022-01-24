@@ -38,7 +38,7 @@ function App() {
                          title: 'Sending...',
                          message: 'Sending cart data.',
                     }));
-                    const response = await fetch('https://redux-side-effects-default-rtdb.europe-west1.firebasedatabase.app/cart.jsos',
+                    const response = await fetch('https://redux-side-effects-default-rtdb.europe-west1.firebasedatabase.app/cart.json',
                          {
                               method: 'PUT',
                               body: JSON.stringify(cart)
