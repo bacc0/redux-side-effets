@@ -6,47 +6,54 @@ const cartSlice = createSlice({
      initialState: {
           items: [],
           totalQuantity: 0,
+          totalPriceForArticle: 0,
+          totalPrice: 0  //
      },
      reducers: {
           addItemToCart(state, action) {
                const newItem = action.payload;
 
-               const existingItem = state.items.find( item => item.id === newItem.id );
-               
+               const existingItem = state.items.find(item => item.id === newItem.id);
+
                state.totalQuantity++;
+
+               state.totalPrice += newItem.price;  //
 
                if (!existingItem) {
                     state.items.push({
-                         itemId: newItem.id,
+                         id: newItem.id,
                          price: newItem.price,
                          quantity: 1,
-                         totalPrice: newItem.price,
+                         totalPriceForArticle: newItem.price,
                          name: newItem.title
                     });
-               } 
-               else {
-                    existingItem.quantity++
-                    // existingItem.totalPrice = existingItem.totalPrice + newItem.price
                }
-
+               else {
+                    existingItem.quantity++;
+                    existingItem.totalPriceForArticle += newItem.price;
+               };
           },
+
           removeItemToCart(state, action) {
-               const id = action.payload;
-               const existingItem =  state.items.find( item => item.id === id )
+
+               const removedItem = action.payload;
+
+               const existingItem = state.items.find(item => item.id === removedItem.id)
 
                state.totalQuantity--;
 
+               state.totalPrice -= removedItem.price;  //
+
                if (existingItem.quantity === 1) {
-                    state.items = state.items.filter( item => item.id !== id )
-               } 
+                    state.items = state.items.filter(item => item.id !== removedItem.id)
+               }
                else {
-                    existingItem.quantity--
-                    // existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
+                    existingItem.quantity--;
+                    existingItem.totalPriceForArticle -= removedItem.price;
                }
           },
      }
 });
-// console.log('in', cartSlice.actions)
 
 export const cartAction = cartSlice.actions;
 

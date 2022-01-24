@@ -5,28 +5,37 @@ import classes from './Cart.module.css';
 import CartItem from './CartItem';
 
 const Cart = (props) => {
-     
-     const cartItems = useSelector(
-          state => state.cart.items
+
+
+     const cartItems = useSelector(state =>
+          state.cart.items
+     );
+     const totalPrice = useSelector(state =>
+          state.cart.totalPrice
      )
      // console.log(cartItems)
+
      return (
           <Card className={classes.cart}>
-               <h2>Your Shopping Cart</h2>
+               <div className={classes.cart_head}>
+                    <h2>Your Shopping Cart </h2>
+                    <h2> ${totalPrice.toFixed(2)}</h2>
+               </div>
                <ul>
 
-                    {cartItems.map( item => (
+                    {cartItems.map(item => (
+
                          <CartItem
-                         item={{ 
-                              // key={item.id},
-                              title: item.name, 
-                              quantity: item.quantity, 
-                              total: item.totalPrice, 
-                              price: item.price }}
-                    />
+                              key={item.id}
+                              item={{
+                                   id: item.id,
+                                   title: item.name,
+                                   quantity: item.quantity,
+                                   totalPriceForArticle: item.totalPriceForArticle,
+                                   price: item.price,
+                              }}
+                         />
                     ))}
-                    
-                  
                </ul>
           </Card>
      );

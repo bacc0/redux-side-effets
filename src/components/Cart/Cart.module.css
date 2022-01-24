@@ -3,6 +3,10 @@
   background-color: #313131;
   color: white;
 }
+.cart_head {
+  display: flex;
+  justify-content: space-between;
+}
 
 .cart h2 {
   font-size: 1.25rem;
