@@ -69,34 +69,37 @@ export const sentCartData = (cart) => {
 
           const sendCartData = async () => {
 
-               const response = await fetch('https://redux-side-effects-default-rtdb.europe-west1.firebasedatabase.app/cart.json', {
-                    method: 'PUT',
-                    body: JSON.stringify(cart)
-               });
+               try {
+                    const response = await fetch('https://redux-side-effects-default-rtdb.europe-west1.firebasedatabase.app/cart.json', {
+                         method: 'PUT',
+                         body: JSON.stringify(cart)
+                    });
 
-               if (response.ok) {
+                    if (response.ok) {
+                         dispatch(uiActions.showNotification({
+                              status: 'success',
+                              title: 'Success...',
+                              message: 'Sent cart data Successfully.',
+                         }));
+                    }
+               }
+               catch (error) {
                     dispatch(uiActions.showNotification({
-                         status: 'success',
-                         title: 'Success...',
-                         message: 'Sent cart data Successfully.',
+                         status: 'error',
+                         title: 'ERROR',
+                         message: `Sending DATA failed. ( ${error} )`,
                     }));
                }
           };
+          sendCartData();
 
-          try {
-               await sendCartData();
-
-          } catch (error) {
+          setTimeout(() => {
                dispatch(uiActions.showNotification({
-                    status: 'error',
-                    title: 'ERROR',
-                    message: `Sending DATA failed. ( ${error} )`,
-               }))
-          }
-     }
+                    status: 'done',
+               }));
+          }, 2500);
+     };
 };
-
-
 
 export const cartAction = cartSlice.actions;
 
