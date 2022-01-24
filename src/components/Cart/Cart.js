@@ -13,7 +13,6 @@ const Cart = (props) => {
      const totalPrice = useSelector(state =>
           state.cart.totalPrice
      )
-     // console.log(cartItems)
 
      return (
           <Card className={classes.cart}>
