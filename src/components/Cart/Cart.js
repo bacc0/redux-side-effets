@@ -1,18 +1,19 @@
 import { useSelector } from 'react-redux';
 
 import Card from '../UI/Card';
-import classes from './Cart.module.css';
 import CartItem from './CartItem';
 
-const Cart = (props) => {
+import classes from './Cart.module.css';
 
+const Cart = () => {
 
      const cartItems = useSelector(state =>
           state.cart.items
      );
      const totalPrice = useSelector(state =>
           state.cart.totalPrice
-     )
+     );
+
 
      return (
           <Card className={classes.cart}>
@@ -21,9 +22,7 @@ const Cart = (props) => {
                     <h2> ${totalPrice.toFixed(2)}</h2>
                </div>
                <ul>
-
-                    {cartItems.map(item => (
-
+                    { cartItems.map(item => (
                          <CartItem
                               key={item.id}
                               item={{
