@@ -14,6 +14,8 @@ const Cart = () => {
           state.cart.totalPrice
      );
 
+     // console.log('cartItems OUT', cartItems)
+
 
      return (
           <Card className={classes.cart}>
@@ -22,8 +24,9 @@ const Cart = () => {
                     <h2> ${totalPrice.toFixed(2)}</h2>
                </div>
                <ul>
-                    { cartItems.map(item => (
-                         <CartItem
+                    { cartItems.map((item )=> (
+                        
+                        <CartItem
                               key={item.id}
                               item={{
                                    id: item.id,
@@ -33,6 +36,7 @@ const Cart = () => {
                                    price: item.price,
                               }}
                          />
+                 
                     ))}
                </ul>
           </Card>
