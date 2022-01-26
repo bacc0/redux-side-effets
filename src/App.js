@@ -16,13 +16,13 @@ function App() {
   const cart = useSelector((state) => state.cart);
   const notification = useSelector((state) => state.ui.notification);
 
-  // console.log('cart', cart)
+  
   useEffect(() => {
     dispatch(fetchCartData());
   }, [dispatch]);
 
   useEffect(() => {
-    if (!isInitial) {
+    if (!isInitial && cart.isChanged) {
       dispatch(sentCartData(cart));
     } else {
       isInitial = false;

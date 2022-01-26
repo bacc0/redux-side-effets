@@ -1,21 +1,21 @@
 import { uiActions } from "./ui-slice";
 import { cartAction } from "./cart-slice";
-
+//   custom Action 
 
 export const fetchCartData = () => {
 
-     return async (dispatch) => {
+     return (dispatch) => {
           (async () => {
                try {
                     const response = await fetch('https://redux-side-effects-default-rtdb.europe-west1.firebasedatabase.app/cart.json');
-
-                    const data = await response.json();
-                    dispatch(cartAction.replaceCart({
-                         items: data.items || [],
-                         totalQuantity: data.totalQuantity,
-                         totalPrice: data.totalPrice
-                    }));
-
+                    if (response.ok) {
+                         const data = await response.json();
+                         dispatch(cartAction.replaceCart({
+                              items: data.items || [],
+                              totalQuantity: data.totalQuantity,
+                              totalPrice: data.totalPrice
+                         }));
+                    };
                } catch (error) {
                     alert(error)
                     dispatch(uiActions.showNotification({
@@ -24,7 +24,7 @@ export const fetchCartData = () => {
                          message: `Fetching cart DATA failed. ( ${error} )`,
                     }));
                }
-          })();
+          })()
      };
 };
 
@@ -32,7 +32,7 @@ export const fetchCartData = () => {
 
 export const sentCartData = (cart) => {
 
-     return async (dispatch) => {
+     return (dispatch) => {
 
           dispatch(uiActions.showNotification({
                status: 'pending',
