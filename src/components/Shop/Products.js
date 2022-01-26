@@ -3,15 +3,15 @@ import classes from './Products.module.css';
 
 const DUMMY_PRODUCT = [
      {
-          id: 'p1',
+          id: 'p1📌',
           price: 6.33,
-          title: 'My 🦁 Frst book',
+          title: 'My 🦁🦁🦁🦁🦁 Frst book 📕',
           description: 'The first book I ever wrote',
      },
      {
-          id: 'p2',
+          id: 'p2🖌',
           price: 2.5,
-          title: 'My 🐵 Second book',
+          title: 'My 🐵🐵🐵🐵🐵 Second book 📚',
           description: 'The second book I ever wrote',
      },
 ];

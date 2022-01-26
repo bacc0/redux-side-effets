@@ -14,6 +14,7 @@ const Cart = () => {
           state.cart.totalPrice
      );
 
+
      // console.log('cartItems OUT', cartItems)
 
 
@@ -21,12 +22,16 @@ const Cart = () => {
           <Card className={classes.cart}>
                <div className={classes.cart_head}>
                     <h2>Your Shopping Cart </h2>
-                    <h2> ${totalPrice.toFixed(2)}</h2>
+                    <h2> ${
+                         totalPrice <= 0
+                              ? ' 0' 
+                              : ' ' + totalPrice.toFixed(2)
+                    } </h2>
                </div>
                <ul>
-                    { cartItems.map((item )=> (
-                        
-                        <CartItem
+                    {cartItems.map((item) => (
+
+                         <CartItem
                               key={item.id}
                               item={{
                                    id: item.id,
@@ -36,7 +41,7 @@ const Cart = () => {
                                    price: item.price,
                               }}
                          />
-                 
+
                     ))}
                </ul>
           </Card>
